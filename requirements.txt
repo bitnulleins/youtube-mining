@@ -1,3 +1,4 @@
 datetime
 pymongo
-dotenv
+python-dotenv
+pydantic

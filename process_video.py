@@ -105,7 +105,7 @@ def version_entry(value, version: int = 1, date = None):
         date = date
     )
 
-def changes(video, item, value_name: str, ):
+def changes(video, item, value_name: str):
     video = video.dict()
     lastValues = item.get(value_name)[-1]
     actualValues = video.get(value_name)
