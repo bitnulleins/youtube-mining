@@ -34,7 +34,7 @@ def init_db() -> collection:
     return collection
 
 def do(had_restart):
-    Timer(60.0, do, [had_restart]).start()
+    #Timer(60.0, do, [had_restart]).start()
     try:
         dateTimeObj = dt.datetime.now()
         timestampStr = dateTimeObj.strftime("[%d-%b-%Y %H:%M:%S]")
@@ -44,7 +44,6 @@ def do(had_restart):
         save_to_db(collection, data)
         print(timestampStr, "OK")
     except Exception as err:
-        # E-Mail verschicken...
         if not had_restart:
             dateTimeObj = dt.datetime.now()
             timestampStr = dateTimeObj.strftime("[%d-%b-%Y %H:%M:%S]")
