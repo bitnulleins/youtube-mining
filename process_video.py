@@ -37,7 +37,6 @@ def save_to_db(collection, data):
                 _id = id,
                 created = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
                 published_at = published_at,
-                modified_at = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
                 channel = channel,
                 channel_id = channel_id,
                 category = category,
@@ -64,6 +63,8 @@ def save_to_db(collection, data):
 
             for value_name in values:
                 item = changes(eval(value_name), item, value_name)
+
+            item['modified_at'] = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
 
             query = { '_id': id }
             update = { '$set': item }
