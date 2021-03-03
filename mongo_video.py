@@ -13,6 +13,7 @@ class MongoVideo(BaseModel):
     video_id: str
     created: str
     published_at: str
+    modified_at: Optional[str] = None
     channel: str
     channel_id: str
     rank: List[VersionEntry]

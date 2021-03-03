@@ -1,5 +1,3 @@
-
-from video import YTVideo
 import datetime as dt
 from mongo_video import MongoVideo, VersionEntry
 
@@ -60,36 +58,11 @@ def save_to_db(collection, data):
 
             collection.insert_one(new_video.dict(by_alias=True))
         else:
-            # TODO: Automatisch erkennen über Value Type = Object?
+            # Variables for version changes...
             values = ['tags', 'title','rank','likes','dislikes','comments','views']
 
-            # TODO: Überflüssig?
-            video_obj = YTVideo(
-                id=id,
-                title=title,
-                channel=channel,
-                channel_id=channel_id,
-                published_at=published_at,
-                rank=rank,
-                tags=tags,
-                category=category,
-                description=description,
-                likes=likes,
-                dislikes=dislikes,
-                comments=comments,
-                views=views,
-                duration=duration,
-                audio_language=audio_language,
-                text_language = text_language,
-                caption=caption,
-                licensed_content=licensed_content,
-                projection=projection
-            )
-
             for value_name in values:
-                item = changes(video_obj, item, value_name)
-
-            # Detect changes...
+                item = changes(eval(value_name), item, value_name)
 
             query = { '_id': id }
             update = { '$set': item }
@@ -105,10 +78,9 @@ def version_entry(value, version: int = 1, date = None):
         date = date
     )
 
-def changes(video, item, value_name: str):
-    video = video.dict()
+def changes(video_value, item, value_name: str):
     lastValues = item.get(value_name)[-1]
-    actualValues = video.get(value_name)
+    actualValues = video_value
     if (lastValues.get('value') != actualValues):
         item.get(value_name).append(
                 version_entry(
