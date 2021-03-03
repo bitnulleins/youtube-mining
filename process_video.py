@@ -37,6 +37,7 @@ def save_to_db(collection, data):
                 _id = id,
                 created = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
                 published_at = published_at,
+                modified_at = dt.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ'),
                 channel = channel,
                 channel_id = channel_id,
                 category = category,
