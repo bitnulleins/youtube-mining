@@ -59,7 +59,7 @@ def save_to_db(collection, data):
             collection.insert_one(new_video.dict(by_alias=True))
         else:
             # Variables for version changes...
-            values = ['tags', 'title','rank','likes','dislikes','comments','views']
+            values = ['tags', 'title','rank','likes','dislikes','comments','views','description']
 
             for value_name in values:
                 item = changes(eval(value_name), item, value_name)
