@@ -1,7 +1,7 @@
 <img src="https://www.bit01.de/wp-content/uploads/2021/03/youtube_mining_logo.png" height="60" />
 
 # Youtube Mining
-A simple client for mining youtube data.
+A simple client for mining YouTube Trend data.
 
 Systems:
 * MongoDB (on host or extern)
