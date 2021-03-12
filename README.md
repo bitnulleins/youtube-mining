@@ -1,19 +1,31 @@
-# Youtube Mining
+<img src="https://www.bit01.de/wp-content/uploads/2021/03/youtube_mining_logo.png" height="60" />
 
-Tech Stack:
-* MongoDB
+# Youtube Mining
+A simple client for mining youtube data.
+
+Systems:
+* MongoDB (on host or extern)
 * Mongo Express (optional)
 * Python-Client
 
-## Data Client
+# Installation
 
-A simple client for mining youtube data. Only put your MongoDB settings to sample.env and rename it to .env.
+## Docker
 
-```sudo docker-compose up```
+1. Add your API Key and Mongo credentials.
+2. Install docker-compose
+3. Do command:
+```sudo docker-compose up -d```
 
-## Youtube Trend Analysis
+If you want to shutdown the service only type:
+```sudo docker-compose down```
 
-Jupyter Notebook with some questions about video trend page from YouTube:
+## Local
 
-* On which time YouTube select trend videos?
-* How many German videos vs. Non-German videos are published?
+1. Only put your MongoDB settings to sample.env and rename it to .env.
+2. Install dependencis with pip ```pip install requirements.txt ```
+3. Then run ```python src/main.py```
+
+# YouTube Trend Analysis
+
+My finished analysis blog post comming soon!
