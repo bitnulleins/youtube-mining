@@ -23,7 +23,7 @@ If you want to shutdown the service only type:
 ## Local
 
 1. Only put your MongoDB settings to sample.env and rename it to .env.
-2. Install dependencis with pip ```pip install requirements.txt ```
+2. Install dependencies with pip ```pip install requirements.txt ```
 3. Then run ```python src/main.py```
 
 # YouTube Trend Analysis

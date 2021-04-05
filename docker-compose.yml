@@ -18,6 +18,7 @@ services:
       MONGO_PORT: 27017
       COUNTRY_CODE: DE
       REPEAT_MINUTE: 1
+      DB_NAME: videos
 
   mongo:
     image: mongo

@@ -30,7 +30,7 @@ def init_db() -> collection:
         username=os.environ.get('MONGO_USER'),
         password=os.environ.get('MONGO_PASSWORD'),
         maxPoolSize=50)
-    collection = client['youtube_mining']['videos']
+    collection = client['youtube_mining'][os.environ.get('DB_NAME')]
     return collection
 
 def do(had_restart):
