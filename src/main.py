@@ -35,7 +35,8 @@ def init_db() -> collection:
 
 def do(had_restart):
     # Repeat it every 60 seconds or with an cronjob.
-    #Timer(60.0, do, [had_restart]).start()
+    if (int(os.environ.get('REPEAT_MINUTE')) > 0):
+        Timer(int(os.environ.get('REPEAT_MINUTE'))*60, do, [had_restart]).start()
     try:
         dateTimeObj = dt.datetime.now()
         timestampStr = dateTimeObj.strftime("[%d-%b-%Y %H:%M:%S]")

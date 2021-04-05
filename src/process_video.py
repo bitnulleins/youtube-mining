@@ -1,5 +1,5 @@
 import datetime as dt
-from mongo_video import MongoVideo, VersionEntry
+from mongo_video import MongoVideo
 
 def save_to_db(collection, data):
 
@@ -40,26 +40,26 @@ def save_to_db(collection, data):
                 channel = channel,
                 channel_id = channel_id,
                 category = category,
-                description = [version_entry(value=description)],
-                likes = [version_entry(value=likes)],
-                dislikes = [version_entry(value=dislikes)],
-                comments = [version_entry(value=comments)],
-                views = [version_entry(value=views)],
+                description = description,
+                likes = [likes],
+                dislikes = [dislikes],
+                comments = [comments],
+                views = [views],
                 duration = duration,
                 audio_language = audio_language,
                 text_language = text_language,
                 caption = caption,
                 licensed_content = licensed_content,
                 projection = projection,
-                rank = [version_entry(value=rank)],
-                title = [version_entry(value=title)],
-                tags = [version_entry(value=tags)]
+                rank = [rank],
+                title = [title],
+                tags = [tags]
             )
 
             collection.insert_one(new_video.dict(by_alias=True))
         else:
             # Variables for version changes...
-            values = ['tags', 'title','rank','likes','dislikes','comments','views','description']
+            values = ['tags', 'title','rank','likes','dislikes','comments','views']
 
             for value_name in values:
                 item = changes(eval(value_name), item, value_name)
@@ -68,29 +68,14 @@ def save_to_db(collection, data):
 
             query = { '_id': id }
             update = { '$set': item }
+
             collection.update_one(query, update, upsert=False)
-
-
-def version_entry(value, version: int = 1, date = None):
-    if date is None:
-        date = dt.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    return VersionEntry(
-        version = version,
-        value = value,
-        date = date
-    )
 
 def changes(video_value, item, value_name: str):
     lastValues = item.get(value_name)[-1]
     actualValues = video_value
-    if (lastValues.get('value') != actualValues):
-        item.get(value_name).append(
-                version_entry(
-                    version=lastValues.get('version')+1,
-                    value=actualValues
-                ).dict()
-            )
-    #return modified item
+    if (lastValues != actualValues):
+        item.get(value_name).append(actualValues)
     return item
 
 def get_isosplit(s, split):

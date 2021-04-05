@@ -2,13 +2,6 @@ from pydantic import BaseModel
 import datetime as dt
 from typing import Any, List, Optional
 
-
-class VersionEntry(BaseModel):
-    version: int
-    date: str
-    value: Any = None
-
-
 class MongoVideo(BaseModel):
     video_id: str
     created: str
@@ -16,15 +9,15 @@ class MongoVideo(BaseModel):
     modified_at: Optional[str] = None
     channel: str
     channel_id: str
-    rank: List[VersionEntry]
-    title: List[VersionEntry]
-    tags: List[VersionEntry]
+    rank: List[Any]
+    title: List[Any]
+    tags: List[Any]
     category: int
-    description: List[VersionEntry]
-    likes: List[VersionEntry]
-    dislikes: List[VersionEntry]
-    comments: List[VersionEntry]
-    views: List[VersionEntry]
+    description: str
+    likes: List[Any]
+    dislikes: List[Any]
+    comments: List[Any]
+    views: List[Any]
     duration: int
     audio_language: Optional[str] = None
     text_language: Optional[str] = None
