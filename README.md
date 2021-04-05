@@ -26,6 +26,15 @@ If you want to shutdown the service only type:
 2. Install dependencies with pip ```pip install requirements.txt ```
 3. Then run ```python src/main.py```
 
+## On Raspberry pi
+
+1. Clone this github repository to a folder (e.g. ```~/Programs/```)
+2. Add it to crontabs for repeatly update ```crontab -e```
+```*/1 * * * * python3 /~/Programs/youtube_mining/main.py >> ~/Programs/youtube_mining/output.log 2>&1```
+3. Check output.log for output
+
+To update the client, go to youtube_mining folder and type ```git pull```
+
 # YouTube Trend Analysis
 
 My finished analysis blog post comming soon!
